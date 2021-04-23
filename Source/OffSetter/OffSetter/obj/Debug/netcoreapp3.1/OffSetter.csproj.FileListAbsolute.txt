@@ -1,0 +1,13 @@
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\netcoreapp3.1\OffSetter.exe
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\netcoreapp3.1\OffSetter.deps.json
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\netcoreapp3.1\OffSetter.runtimeconfig.json
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\netcoreapp3.1\OffSetter.runtimeconfig.dev.json
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\netcoreapp3.1\OffSetter.dll
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\netcoreapp3.1\OffSetter.pdb
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.csprojAssemblyReference.cache
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.AssemblyInfoInputs.cache
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.AssemblyInfo.cs
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.csproj.CoreCompileInputs.cache
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.dll
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.pdb
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\netcoreapp3.1\OffSetter.genruntimeconfig.cache

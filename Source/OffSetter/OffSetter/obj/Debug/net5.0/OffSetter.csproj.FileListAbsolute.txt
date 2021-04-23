@@ -1,0 +1,16 @@
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\OffSetter.exe
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\OffSetter.deps.json
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\OffSetter.runtimeconfig.json
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\OffSetter.runtimeconfig.dev.json
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\OffSetter.dll
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\ref\OffSetter.dll
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\bin\Debug\net5.0\OffSetter.pdb
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.csprojAssemblyReference.cache
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.AssemblyInfoInputs.cache
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.AssemblyInfo.cs
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.csproj.CoreCompileInputs.cache
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.dll
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\ref\OffSetter.dll
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.pdb
+D:\Repos\OffSetter\Source\OffSetter\OffSetter\obj\Debug\net5.0\OffSetter.genruntimeconfig.cache
