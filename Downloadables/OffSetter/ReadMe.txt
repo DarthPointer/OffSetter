@@ -18,7 +18,7 @@ Instructions:
 - Input names number change.
 - Input net size change of names block.
 - Input change of a struct size in the .uexp.
-- Input the struct's serial offset.
+- Input the struct's serial offset, increased by net size change of names block.
 - You should get a copy of the original file with changed offsets with .offset "suffix".
 
 Warning:
@@ -31,7 +31,7 @@ in different places.
 1) Multiple changes in names block (you only need to know net changes of names count
 and the block's size).
 2) Size change of a single exported structure referred in exports block. You need to know its initial SerialOffset and
-its net size change.
+its net size change. YOU WILL ALSO HAVE TO ADD NAMES BLOCK SIZE CHANGE TO SIZECHANGE SERIAL OFFSET!
 
 Try to keep all changes between "offsettings" fitting these 2 limitations of single "offsetting pass".
 
