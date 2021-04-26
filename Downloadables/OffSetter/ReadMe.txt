@@ -10,6 +10,7 @@ v 1.0
 Supported offseting cases:
 
 - Changed size of names block of .uasset file.
+- Changed size of imports block of .uasset file.
 - Changed structure size in .uexp file (sub-structure size marks in the .uexp should be changed manually).
 
 Instructions:
