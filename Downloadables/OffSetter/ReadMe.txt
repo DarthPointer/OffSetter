@@ -1,4 +1,5 @@
 This is an ASAP-coded .net5 application to automate offset changes in .uasset files for modding purposes.
+You have .net5 runtime intalled to run the tool! You can get it here: https://dotnet.microsoft.com/download/dotnet/5.0
 
 In order to make extensive edits of .uasset and .uexp files and keep them pars-able for the UE4 engine,
 you should update offsets updated according to size changes in different blocks of the files. This tool
