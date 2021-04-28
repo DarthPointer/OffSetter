@@ -2,7 +2,7 @@
   "profiles": {
     "OffSetter": {
       "commandName": "Project",
-      "commandLineArgs": "D:\\DRGpacker\\input\\Content\\WeaponsNTools\\BoltActionRifle\\WPN_M1000.uasset.1"
+      "commandLineArgs": "D:\\DRGpacker\\input\\Content\\WeaponsNTools\\BoltActionRifle\\WPN_M1000.uasset -n 30 1 -r -m"
     }
   }
 }

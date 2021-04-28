@@ -5,4 +5,12 @@
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="cd $(TargetDir)&#xD;&#xA;copy OffSetter.exe temp\OffSetter.exe&#xD;&#xA;copy OffSetter.deps.json temp\OffSetter.deps.json&#xD;&#xA;copy OffSetter.dll temp\OffSetter.dll&#xD;&#xA;copy OffSetter.runtimeconfig.json temp\OffSetter.runtimeconfig.json&#xD;&#xA;copy DRGOffSetterLib.dll temp\DRGOffSetterLib.dll&#xD;&#xA;&#xD;&#xA;xcopy temp ..\..\..\..\..\..\Downloadables\OffSetter /Y" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DRGOffSetterLib\DRGOffSetterLib.csproj" />
+  </ItemGroup>
+
 </Project>

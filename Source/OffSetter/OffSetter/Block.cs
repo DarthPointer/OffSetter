@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using DRGOffSetterLib;
 
 namespace OffSetter
 {
@@ -17,7 +15,7 @@ namespace OffSetter
             {
                 foreach (Int32 offset in GetAffectedGlobalOffsets())
                 {
-                    AddToInt32ByOffset(span, args[RequiredOffSettingData.SizeChange], offset);
+                    DOLib.AddToInt32ByOffset(span, args[RequiredOffSettingData.SizeChange], offset);
                 }
             }
 
@@ -27,34 +25,6 @@ namespace OffSetter
         protected abstract void LocalOffSet(Span<byte> span, Dictionary<RequiredOffSettingData, Int32> args);
 
         public abstract void PreviousBlocksOffSet(Span<byte> span, Int32 sizeChange);
-
-        #region static tool methods
-
-        protected static Int32 Int32FromSpanOffset(Span<byte> span, Int32 offset)
-        {
-            return SpanToInt32(span.Slice(offset, 4));
-        }
-
-        protected static Int32 SpanToInt32(Span<byte> span)
-        {
-            return span[0] + 256 * (span[1] + 256 * (span[2] + 256 * span[3]));
-        }
-
-        protected static void AddToInt32ByOffset(Span<byte> span, Int32 value, Int32 offset)
-        {
-            WriteInt32IntoOffset(span, Int32FromSpanOffset(span, offset) + value, offset);
-        }
-
-        protected static void WriteInt32IntoOffset(Span<byte> span, Int32 value, Int32 offset)
-        {
-            Span<byte> scope = span.Slice(offset, 4);
-            scope[0] = (byte)(value % 256);
-            scope[1] = (byte)(value / 256 % 256);
-            scope[2] = (byte)(value / 256 / 256 % 256);
-            scope[3] = (byte)(value / 256 / 256 / 256);
-        }
-
-        #endregion
     }
 
     [Block(humanReadableBlockName = "names map", offSettingArguments = RequiredOffSettingData.SizeChange | RequiredOffSettingData.CountChange)]
@@ -71,7 +41,7 @@ namespace OffSetter
         {
             foreach (Int32 offset in nameCountOffsets)
             {
-                AddToInt32ByOffset(span, args[RequiredOffSettingData.CountChange], offset);
+                DOLib.AddToInt32ByOffset(span, args[RequiredOffSettingData.CountChange], offset);
             }
         }
 
@@ -90,7 +60,7 @@ namespace OffSetter
 
         protected override void LocalOffSet(Span<byte> span, Dictionary<RequiredOffSettingData, int> args)
         {
-            AddToInt32ByOffset(span, args[RequiredOffSettingData.CountChange], importCountOffset);
+            DOLib.AddToInt32ByOffset(span, args[RequiredOffSettingData.CountChange], importCountOffset);
         }
 
         public override void PreviousBlocksOffSet(Span<byte> span, int sizeChange) { }
@@ -126,8 +96,8 @@ namespace OffSetter
 
         private static void SerialOffsetting(Span<byte> span, Int32 sizeChange, Int32 sizeChangeOffset)
         {
-            Int32 exportsCount = Int32FromSpanOffset(span, exportsCountOffset);
-            Int32 exportsMapOffset = Int32FromSpanOffset(span, exportsMapOffsetOffset);
+            Int32 exportsCount = DOLib.Int32FromSpanOffset(span, exportsCountOffset);
+            Int32 exportsMapOffset = DOLib.Int32FromSpanOffset(span, exportsMapOffsetOffset);
 
             Int32 currentReferenceOffset = exportsMapOffset;
             bool applyOffsetChange = false;
@@ -163,7 +133,7 @@ namespace OffSetter
 
         private static RelativeSizeChangeDirection CheckOffsetAffected(Span<byte> span, Int32 sizeChangeSerialOffset, Int32 referenceOffset)
         {
-            Int32 serialOffset = Int32FromSpanOffset(span, referenceOffset + relativeSerialOffsetOffset);
+            Int32 serialOffset = DOLib.Int32FromSpanOffset(span, referenceOffset + relativeSerialOffsetOffset);
 
             if (serialOffset > sizeChangeSerialOffset) return RelativeSizeChangeDirection.before;
             else if (serialOffset == sizeChangeSerialOffset) return RelativeSizeChangeDirection.here;
@@ -172,12 +142,12 @@ namespace OffSetter
 
         private static void ApplySerialSizeChange(Span<byte> span, Int32 sizeChange, Int32 referenceOffset)
         {
-            AddToInt32ByOffset(span, sizeChange, referenceOffset + relativeSerialSizeOffset);
+            DOLib.AddToInt32ByOffset(span, sizeChange, referenceOffset + relativeSerialSizeOffset);
         }
 
         private static void ApplySerialOffsetChange(Span<byte> span, Int32 sizeChange, Int32 referenceOffset)
         {
-            AddToInt32ByOffset(span, sizeChange, referenceOffset + relativeSerialOffsetOffset);
+            DOLib.AddToInt32ByOffset(span, sizeChange, referenceOffset + relativeSerialOffsetOffset);
         }
 
         private enum RelativeSizeChangeDirection

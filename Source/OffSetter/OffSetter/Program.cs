@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using DRGOffSetterLib;
 
 namespace OffSetter
 {
@@ -12,42 +13,67 @@ namespace OffSetter
             { "-i" , 1 },
             { "-e" , 2 }
         };
+        private static string mutedKey = "-m";
+        private static string replaceKey = "-r";
 
         static void Main(string[] args)
         {
-            if (args.Length == 0)
+            RunData runData = ProcessArgs(args);
+
+            if (runData.fileName.Length == 0)
             {
                 Console.WriteLine("Need filename to operate!");
             }
             else
             {
-                Span<byte> span = File.ReadAllBytes(args[0]);
+                Span<byte> span = File.ReadAllBytes(runData.fileName);
 
-                if (args.Length > 1)
+                if (runData.modeCode != -1)
                 {
-                    if (modeKeysToBlockIndex.TryGetValue(args[1], out int modeIndex))
-                    {
-                        ExecuteMode(span, modeIndex, 0);
-                    }
-                    else
-                    {
-                        ExecuteAllModes(span);
-                    }
+                    ExecuteMode(span, runData.modeCode, 0, runData.modeArgs, runData.mutedMode);
                 }
                 else
                 {
-                    ExecuteAllModes(span);
+                    ExecuteAllModes(span, runData.modeArgs, runData.mutedMode);
                 }
 
-                File.WriteAllBytes(args[0] + ".offset", span.ToArray());
+                WriteResult(span, runData.fileName, runData.replaceMode);
 
-                Console.WriteLine("Done!");
+                if (!runData.mutedMode) Console.WriteLine("Done!");
             }
 
-            Console.ReadKey();
+            if (!runData.mutedMode) Console.ReadKey();
         }
 
-        static int ExecuteMode(Span<byte> span, int modeIndex, int cumulativeOffset)
+        private static RunData ProcessArgs(string[] args)
+        {
+            RunData result = new RunData();
+            result.fileName = args[0];
+
+            foreach (string arg in args.AsSpan(1))
+            {
+                if (modeKeysToBlockIndex.ContainsKey(arg))
+                {
+                    result.modeCode = modeKeysToBlockIndex[arg];
+                }
+                else if (mutedKey == arg)
+                {
+                    result.mutedMode = true;
+                }
+                else if (replaceKey == arg)
+                {
+                    result.replaceMode = true;
+                }
+                else
+                {
+                    result.modeArgs.Add(arg);
+                }
+            }
+
+            return result;
+        }
+
+        private static int ExecuteMode(Span<byte> span, int modeIndex, int cumulativeOffset, List<string> modeArgs, bool mutedMode)
         {
             Block block = blocks[modeIndex];
 
@@ -61,24 +87,21 @@ namespace OffSetter
             int sizeChange = 0;
             if ((blockArgs & RequiredOffSettingData.SizeChange) != RequiredOffSettingData.None)
             {
-                Console.WriteLine($"Input size change for {humanReadableBlockName}");
-                sizeChange = int.Parse(Console.ReadLine());
+                sizeChange = int.Parse(UseOrRequestArg($"Input size change for {humanReadableBlockName}", modeArgs, mutedMode));
 
                 args[RequiredOffSettingData.SizeChange] = sizeChange;
             }
 
             if ((blockArgs & RequiredOffSettingData.SizeChangeOffset) != RequiredOffSettingData.None)
             {
-                Console.WriteLine($"Input size change offset for {humanReadableBlockName}");
-                int sizeChangeOffset = int.Parse(Console.ReadLine());
+                int sizeChangeOffset = int.Parse(UseOrRequestArg($"Input size change offset for {humanReadableBlockName}", modeArgs, mutedMode));
 
                 args[RequiredOffSettingData.SizeChangeOffset] = sizeChangeOffset + cumulativeOffset;
             }
 
             if ((blockArgs & RequiredOffSettingData.CountChange) != RequiredOffSettingData.None)
             {
-                Console.WriteLine($"Input count change for {humanReadableBlockName}");
-                int countChange = int.Parse(Console.ReadLine());
+                int countChange = int.Parse(UseOrRequestArg($"Input count change for {humanReadableBlockName}", modeArgs, mutedMode));
 
                 args[RequiredOffSettingData.CountChange] = countChange;
             }
@@ -97,15 +120,56 @@ namespace OffSetter
             return cumulativeOffset + sizeChange;
         }
 
-        static void ExecuteAllModes(Span<byte> span)
+        private static void ExecuteAllModes(Span<byte> span, List<string> modeArgs, bool mutedMode)
         {
             throw new NotImplementedException("All-modes execution is disabled as currently it is considered too difficult to use reliably.");
 
             int cumulativeOffset = 0;
             for (int modeIndex = 0; modeIndex < blocks.Count; modeIndex++)
             {
-                cumulativeOffset = ExecuteMode(span, modeIndex, cumulativeOffset);
+                cumulativeOffset = ExecuteMode(span, modeIndex, cumulativeOffset, modeArgs, mutedMode);
             }
+        }
+
+        private static string UseOrRequestArg(string requestMessage, List<string> modeArgs, bool mutedMode)
+        {
+            if (modeArgs.Count > 0)
+            {
+                return modeArgs.TakeArg();
+            }
+            else if (!mutedMode)
+            {
+                Console.WriteLine(requestMessage);
+                return Console.ReadLine();
+            }
+            else
+            {
+                throw new Exception("Insufficient number of arguments passed on launch in muted mode");
+            }
+        }
+
+        private static void WriteResult(Span<byte> span, string fileName, bool replaceMode)
+        {
+            if (replaceMode)
+            {
+                if (File.Exists(fileName + ".offset")) File.Delete(fileName + ".offset");
+                Directory.Move(fileName, fileName + ".offset");
+                File.WriteAllBytes(fileName, span.ToArray());
+            }
+            else
+            {
+                File.WriteAllBytes(fileName + ".offset", span.ToArray());
+            }
+        }
+
+        private record RunData
+        {
+            public bool mutedMode = false;
+            public bool replaceMode = false;
+            public string fileName = "";
+            public int modeCode = -1;
+
+            public List<string> modeArgs = new List<string>();
         }
     }
 }

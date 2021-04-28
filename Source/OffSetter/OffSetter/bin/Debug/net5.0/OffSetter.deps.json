@@ -7,14 +7,27 @@
   "targets": {
     ".NETCoreApp,Version=v5.0": {
       "OffSetter/1.0.0": {
+        "dependencies": {
+          "DRGOffSetterLib": "1.0.0"
+        },
         "runtime": {
           "OffSetter.dll": {}
+        }
+      },
+      "DRGOffSetterLib/1.0.0": {
+        "runtime": {
+          "DRGOffSetterLib.dll": {}
         }
       }
     }
   },
   "libraries": {
     "OffSetter/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    },
+    "DRGOffSetterLib/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

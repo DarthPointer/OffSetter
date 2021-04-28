@@ -1,0 +1,12 @@
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\bin\Debug\net5.0\DRGOffSetterLib.deps.json
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\bin\Debug\net5.0\DRGOffSetterLib.dll
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\bin\Debug\net5.0\ref\DRGOffSetterLib.dll
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\bin\Debug\net5.0\DRGOffSetterLib.pdb
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.csprojAssemblyReference.cache
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.GeneratedMSBuildEditorConfig.editorconfig
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.AssemblyInfoInputs.cache
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.AssemblyInfo.cs
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.csproj.CoreCompileInputs.cache
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.dll
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\ref\DRGOffSetterLib.dll
+D:\Repos\OffSetter\Source\OffSetter\DRGOffSetterLib\obj\Debug\net5.0\DRGOffSetterLib.pdb

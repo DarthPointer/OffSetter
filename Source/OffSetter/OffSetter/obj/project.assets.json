@@ -1,11 +1,30 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net5.0": {
+      "DRGOffSetterLib/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v5.0",
+        "compile": {
+          "bin/placeholder/DRGOffSetterLib.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/DRGOffSetterLib.dll": {}
+        }
+      }
+    }
   },
-  "libraries": {},
+  "libraries": {
+    "DRGOffSetterLib/1.0.0": {
+      "type": "project",
+      "path": "../DRGOffSetterLib/DRGOffSetterLib.csproj",
+      "msbuildProject": "../DRGOffSetterLib/DRGOffSetterLib.csproj"
+    }
+  },
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net5.0": [
+      "DRGOffSetterLib >= 1.0.0"
+    ]
   },
   "packageFolders": {
     "C:\\Users\\Admin\\.nuget\\packages\\": {}
@@ -33,7 +52,11 @@
       "frameworks": {
         "net5.0": {
           "targetAlias": "net5.0",
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Repos\\OffSetter\\Source\\OffSetter\\DRGOffSetterLib\\DRGOffSetterLib.csproj": {
+              "projectPath": "D:\\Repos\\OffSetter\\Source\\OffSetter\\DRGOffSetterLib\\DRGOffSetterLib.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
