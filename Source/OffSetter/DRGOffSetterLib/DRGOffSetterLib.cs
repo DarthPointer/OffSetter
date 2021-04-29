@@ -23,10 +23,11 @@ namespace DRGOffSetterLib
         public static void WriteInt32IntoOffset(Span<byte> span, Int32 value, Int32 offset)
         {
             Span<byte> scope = span.Slice(offset, 4);
-            scope[0] = (byte)(value % 256);
-            scope[1] = (byte)(value / 256 % 256);
-            scope[2] = (byte)(value / 256 / 256 % 256);
-            scope[3] = (byte)(value / 256 / 256 / 256);
+
+            scope[0] = (byte)(value & 0xFF);
+            scope[1] = (byte)((value & 0xFF00) >> 8);
+            scope[2] = (byte)((value & 0xFF0000) >> 16);
+            scope[3] = (byte)((value & 0xFF000000) >> 24);
         }
     }
 
