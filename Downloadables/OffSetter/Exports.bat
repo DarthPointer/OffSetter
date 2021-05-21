@@ -1,1 +1,1 @@
-"D:\Repos\OffSetter\Downloadables\OffSetter\OffSetter.exe" "%1" -e
+"D:\Repos\OffSetter\Downloadables\OffSetter\OffSetter.exe" "%1" -e -r
