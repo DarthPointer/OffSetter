@@ -7,11 +7,12 @@ namespace OffSetter
 {
     class Program
     {
-        private static List<Block> blocks = new List<Block> { new NamesMap(), new ImportsMap(), new Exports() };
+        private static List<Block> blocks = new List<Block> { new NamesMap(), new ImportsMap(), new ExportsMap(), new Exports() };
         private static Dictionary<string, int> modeKeysToBlockIndex = new Dictionary<string, int> {
             { "-n" , 0 },
             { "-i" , 1 },
-            { "-e" , 2 }
+            { "-edef" , 2 },
+            { "-e" , 3 }
         };
         private static string mutedKey = "-m";
         private static string replaceKey = "-r";

@@ -31,7 +31,7 @@ namespace OffSetter
     class NamesMap : Block
     {
         private static Int32[] nameCountOffsets = { 41, 117 };
-        private Int32[] affectedOffsetsOffsets = { 24, 61, 69, 73, 165, 169, 189 };
+        private static Int32[] affectedOffsetsOffsets = { 24, 61, 69, 73, 165, 169, 189 };
         protected override ReadOnlyCollection<Int32> GetAffectedGlobalOffsets()
         {
             return Array.AsReadOnly(affectedOffsetsOffsets);
@@ -52,7 +52,7 @@ namespace OffSetter
     class ImportsMap : Block
     {
         private static Int32 importCountOffset = 65;
-        private Int32[] affectedOffsetsOffsets = { 24, 61, 73, 165, 169, 189 };
+        private static Int32[] affectedOffsetsOffsets = { 24, 61, 73, 165, 169, 189 };
         protected override ReadOnlyCollection<Int32> GetAffectedGlobalOffsets()
         {
             return Array.AsReadOnly(affectedOffsetsOffsets);
@@ -61,6 +61,25 @@ namespace OffSetter
         protected override void LocalOffSet(Span<byte> span, Dictionary<RequiredOffSettingData, int> args)
         {
             DOLib.AddToInt32ByOffset(span, args[RequiredOffSettingData.CountChange], importCountOffset);
+        }
+
+        public override void PreviousBlocksOffSet(Span<byte> span, int sizeChange) { }
+    }
+
+    [Block(humanReadableBlockName = "exports map", offSettingArguments = RequiredOffSettingData.SizeChange | RequiredOffSettingData.CountChange)]
+    class ExportsMap : Block
+    {
+        private static Int32 exportCountOffset = 57;
+        private static Int32[] affectedOffsetsOffsets = { 24, 73, 165, 169, 189 };
+
+        protected override ReadOnlyCollection<Int32> GetAffectedGlobalOffsets()
+        {
+            return Array.AsReadOnly(affectedOffsetsOffsets);
+        }
+
+        protected override void LocalOffSet(Span<byte> span, Dictionary<RequiredOffSettingData, int> args)
+        {
+            DOLib.AddToInt32ByOffset(span, args[RequiredOffSettingData.CountChange], exportCountOffset);
         }
 
         public override void PreviousBlocksOffSet(Span<byte> span, int sizeChange) { }
