@@ -1,1 +1,0 @@
-"D:\Repos\OffSetter\Downloadables\OffSetter\OffSetter.exe" "%1" -i

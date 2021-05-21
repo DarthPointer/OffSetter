@@ -2,7 +2,7 @@
   "profiles": {
     "OffSetter": {
       "commandName": "Project",
-      "commandLineArgs": "D:\\DRGpacker\\input\\Content\\WeaponsNTools\\BoltActionRifle\\WPN_M1000.uasset -n 30 1 -r -m"
+      "commandLineArgs": "D:\\DRGpacker\\input\\Content\\WeaponsNTools\\LineCutter\\Overclocks\\OC_LineCutter_RollControl_C.uasset -e 12 1865"
     }
   }
 }
